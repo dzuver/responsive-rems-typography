@@ -1,0 +1,31 @@
+//Definifng breakpoints
+$break-small: 360px;
+$break-large: 768px;
+$base-font-size: 16; //in pixels
+
+//Doing math mixin (calculating rem size)
+@mixin rem($px, $base-font-size){
+	font-size: $px + px; // pixel font-size fallback
+    font-size: ($px / $base-font-size) * 1rem; // rem font-size
+}
+//Generating media queries
+@mixin respond-to($media, $px, $base-font-size) {
+    @if $media == handhelds {
+        @media only screen and (max-width: $break-small) { @include rem($px, $base-font-size); }
+    }
+    @else if $media == medium-screens {
+        @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @include rem($px, $base-font-size); }
+    }
+    @else if $media == wide-screens {
+        @media only screen and (min-width: $break-large) { @include rem($px, $base-font-size); }
+    }
+}
+
+//Include mixins in styles
+h1 { @include respond-to(handhelds, 30, $base-font-size);  @include respond-to(medium-screens, 38, $base-font-size);  @include respond-to(wide-screens, 42, $base-font-size) }
+h2 { @include respond-to(handhelds, 26, $base-font-size);  @include respond-to(medium-screens, 32, $base-font-size);  @include respond-to(wide-screens, 36, $base-font-size) }
+h3 { @include respond-to(handhelds, 20, $base-font-size);  @include respond-to(medium-screens, 26, $base-font-size);  @include respond-to(wide-screens, 30, $base-font-size) }
+h4 { @include respond-to(handhelds, 18, $base-font-size);  @include respond-to(medium-screens, 22, $base-font-size);  @include respond-to(wide-screens, 28, $base-font-size) }
+h5 { @include respond-to(handhelds, 116, $base-font-size);  @include respond-to(medium-screens, 18, $base-font-size);  @include respond-to(wide-screens, 22, $base-font-size) }
+h6 { @include respond-to(handhelds, 12, $base-font-size);  @include respond-to(medium-screens, 14, $base-font-size);  @include respond-to(wide-screens, $base-font-size, $base-font-size) }
+p { @include respond-to(handhelds, 12, $base-font-size);  @include respond-to(medium-screens, 14, $base-font-size);  @include respond-to(wide-screens, 18, $base-font-size) }
