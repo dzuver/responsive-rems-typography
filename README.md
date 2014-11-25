@@ -11,7 +11,7 @@ First you define breakpoints and base font size (great read on base font size ma
 ```scss
 $break-small: 360px;
 $break-large: 768px;
-base-font-size: 16;
+$base-font-size: 16;
 ```
 Doing math (calculating rems from desired font size in pixels and browser default font-size). 
 ```scss
